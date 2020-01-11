@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -20,12 +22,16 @@
   },
   "homepage": "https://github.com/Toguro85/jotter#readme",
   "dependencies": {
+    "axios": "^0.19.1",
     "bcryptjs": "^2.4.3",
+    "bootstrap": "^4.4.1",
     "config": "^3.2.4",
     "express": "^4.17.1",
     "express-validator": "^6.3.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.8.6"
+    "material-ui": "^0.20.2",
+    "mongoose": "^5.8.6",
+    "react-tap-event-plugin": "^3.0.3"
   },
   "devDependencies": {
     "concurrently": "^5.0.2",
