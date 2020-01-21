@@ -8,7 +8,7 @@ const BlogForm = () => {
   const { addBlog, current, clearCurrent, updateBlog } = blogContext;
   const [blog, setBlog] = useState({
     title: '',
-    content: ''
+    content: 'Write your story'
   });
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const BlogForm = () => {
     } else {
       setBlog({
         title: '',
-        content: ''
+        content: 'Write your story'
       });
     }
   }, [blogContext, current]);
@@ -32,7 +32,7 @@ const BlogForm = () => {
     else updateBlog(blog);
     setBlog({
       title: '',
-      content: ''
+      content: 'Write your story'
     });
     clearCurrent();
   };
@@ -48,13 +48,13 @@ const BlogForm = () => {
       content: newContent
     });
   };
-  /*
-  const updateContent = newContent => {
+
+  /*const updateContent = newContent => {
     setBlog({
       content: newContent
     });
-  };
-*/
+  };*/
+
   const onBlur = evt => {
     console.log('onBlur event called with event info: ', evt);
   };

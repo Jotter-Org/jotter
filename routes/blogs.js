@@ -71,7 +71,7 @@ router.put('/:id', auth, async (req, res) => {
   const blogFields = {};
 
   if (title) blogFields.name = title;
-  if (content) blogFields.email = content;
+  if (content) blogFields.content = content;
 
   try {
     let blog = await Blog.findById(req.params.id);
