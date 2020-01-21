@@ -8,13 +8,11 @@ connectDB();
 // init middleware
 app.use(express.json({ extended: false }));
 
-app.get('/', (req, res) => res.json({ msg: 'hello' }));
-
 //routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/users', require('./routes/users'));
 //TODO make one for blog
-//app.use('/api/blog', require('./routes/contacts'));
+app.use('/api/blogs', require('./routes/blogs'));
 
 const PORT = process.env.PORT || 5000;
 
