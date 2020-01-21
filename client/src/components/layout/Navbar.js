@@ -42,7 +42,7 @@ const Navbar = ({ title, icon }) => {
   return (
     <div className="navbar bg-primary">
       <h1>
-        <i class="fa fa-book" />
+        <i className="fa fa-book" />
         {title}
       </h1>
       <ul>
