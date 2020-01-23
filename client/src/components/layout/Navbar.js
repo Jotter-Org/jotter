@@ -3,69 +3,103 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
 import BlogContext from '../../context/blog/blogContext';
+import AppBar from '@material-ui/core/AppBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+// import Link from '@material-ui/core/Link';
+import { makeStyles } from '@material-ui/core/styles';
+import jlogo from '../assets/jotter.ico';
 
-const Navbar = ({ title, icon }) => {
-  const authContext = useContext(AuthContext);
-  const blogContext = useContext(BlogContext);
+const useStyles = makeStyles(theme => ({
+	'@global': {
+		ul: {
+		margin: 0,
+		padding: 0,
+		},
+		li: {
+		listStyle: 'none',
+		},
+	},
+	appBar: {
+		borderBottom: `1px solid ${theme.palette.divider}`,
+	},
+	toolbar: {
+		flexWrap: 'wrap',
+	},
+	toolbarTitle: {
+		flexGrow: 1,
+	},
+	link: {
+		margin: theme.spacing(2, 3),
+	},
+	logo: {
+		width: 40,
+		height: 40
+	}
+}));
 
-  const { isAuthenticated, logout, user } = authContext;
-  const { clearBlogs } = blogContext;
 
-  const onLogout = () => {
-    logout();
-    clearBlogs();
-  };
+const Navbar = () => {
+	const authContext = useContext(AuthContext);
+	const blogContext = useContext(BlogContext);
 
-  const authLinks = (
-    <Fragment>
-      <li>Hello {user && user.name}</li>
-      <li>
-        <a onClick={onLogout} href="#!">
-          <i className="fas fs-sign-out-alt" />
-          <span className="hide-sm">Logout</span>
-        </a>
-      </li>
-    </Fragment>
-  );
+	const { isAuthenticated, logout, user } = authContext;
+	const { clearBlogs } = blogContext;
+	const classes = useStyles();
 
-  const guestLinks = (
-    <Fragment>
-      <li>
-        <Link to="/register">Register</Link>
-      </li>
+	const onLogout = () => {
+		logout();
+		clearBlogs();
+	};
 
-      <li>
-        <Link to="/login">Login</Link>
-      </li>
-    </Fragment>
-  );
-  return (
-    <div className="navbar bg-primary">
-      <h1>
-        <i className="fa fa-book" />
-        {title}
-      </h1>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
+	const authLinks = (
+		<Fragment>
+			<li>Hello {user && user.name}</li>
+			<li>
+				<Link onClick={onLogout} href="#!">
+				<i className="fas fs-sign-out-alt" />
+				<span className="hide-sm">Logout</span>
+				</Link>
+			</li>
+		</Fragment>
+	);
 
-        {isAuthenticated ? authLinks : guestLinks}
-      </ul>
-    </div>
-  );
-};
+	const guestLinks = (
+		<Fragment>
+			<Link variant="button" color="textPrimary" to="/register">Register</Link>    /
+			<Link variant="button" color="textPrimary" to="/login">Login</Link>
+		</Fragment>
+	);
 
-Navbar.propTypes = {
-  title: PropTypes.string.isRequired,
-  icon: PropTypes.string
-};
-
-Navbar.defaultProps = {
-  title: 'Jotter'
+	return (
+		<Fragment>
+			<CssBaseline />
+			<AppBar position="static" color="default" elevation={0} className={classes.appBar}>
+				<Toolbar className={classes.toolbar}>
+					<Typography variant="h6" color="inherit"  className={classes.toolbarTitle} >
+						<img
+							className={classes.logo}
+							src={
+							jlogo
+							}
+							alt="Jotter Logo"
+						/>
+						{" "}
+						<span style={{ justifyContent: "space-around"}}>
+							Jotter
+						</span>
+					</Typography>
+					<nav>	  
+						<Link variant="button" color="textPrimary" to="/" className={classes.link}>Home</Link>
+						<Link variant="button" color="textPrimary" to="/about" className={classes.link}>About</Link>
+						{isAuthenticated ? authLinks : guestLinks}
+					</nav>  
+				</Toolbar>
+			</AppBar>
+		</Fragment>
+		
+	);
 };
 
 export default Navbar;

@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/Toguro85/jotter#readme",
   "dependencies": {
+    "@material-ui/core": "^4.8.3",
+    "@material-ui/icons": "^4.5.1",
     "axios": "^0.19.1",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.4.1",
