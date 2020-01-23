@@ -8,7 +8,7 @@ const BlogForm = () => {
   const { addBlog, current, clearCurrent, updateBlog } = blogContext;
   const [blog, setBlog] = useState({
     title: '',
-    content: 'Write your story'
+    content: 'Write your story1'
   });
 
   useEffect(() => {
@@ -17,23 +17,26 @@ const BlogForm = () => {
     } else {
       setBlog({
         title: '',
-        content: 'Write your story'
+        content: 'Write your story2'
       });
     }
   }, [blogContext, current]);
 
   const { title, content } = blog;
 
-  const onChange = e => setBlog({ ...blog, [e.target.name]: e.target.value });
+  const onChange = e => setBlog({ ...blog, title: e.target.value });
 
   const onSubmit = e => {
     e.preventDefault();
+
+    console.log(content);
     if (current === null) addBlog(blog);
     else updateBlog(blog);
     setBlog({
       title: '',
-      content: 'Write your story'
+      content: 'Write your story3'
     });
+
     clearCurrent();
   };
 
@@ -44,16 +47,21 @@ const BlogForm = () => {
   const onChange1 = evt => {
     console.log('onChange fired with event info: ', evt);
     var newContent = evt.editor.getData();
+
+    console.log('ffffffff' + newContent);
+
+    setBlog({
+      ...blog,
+      content: newContent
+    });
+    console.log('gggggg' + content);
+  };
+
+  const updateContent = newContent => {
     setBlog({
       content: newContent
     });
   };
-
-  /*const updateContent = newContent => {
-    setBlog({
-      content: newContent
-    });
-  };*/
 
   const onBlur = evt => {
     console.log('onBlur event called with event info: ', evt);
@@ -78,11 +86,12 @@ const BlogForm = () => {
       <CKEditor
         activeClass="p10"
         content={content}
-        events={{
+        /*events={{
           blur: onBlur,
           afterPaste: afterPaste,
           change: onChange1
-        }}
+        }}*/
+        onChange={updateContent}
       />
       <div>
         <input

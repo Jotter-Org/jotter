@@ -60,13 +60,16 @@ router.post(
         (err, token) => {
           if (err) {
             throw err;
+            return ;
           }
           res.json({ token });
+          return;
         }
       );
     } catch (err) {
       console.error(err.message);
       res.status(500).send('server error phew');
+      return;
     }
   }
 );

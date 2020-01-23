@@ -15,9 +15,11 @@ router.get('/', auth, async (req, res) => {
       date: -1
     });
     res.json(blogs);
+    return;
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
+    return;
   }
 });
 
@@ -53,9 +55,11 @@ router.post(
       const blog = await newBlog.save();
 
       res.json(blog);
+      return;
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
+      return;
     }
   }
 );
@@ -89,9 +93,11 @@ router.put('/:id', auth, async (req, res) => {
     );
 
     res.json(blog);
+    return;
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
+    return;
   }
 });
 
@@ -115,6 +121,7 @@ router.delete('/:id', auth, async (req, res) => {
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
+    return;
   }
 });
 
