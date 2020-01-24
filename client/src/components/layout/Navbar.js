@@ -1,7 +1,6 @@
 import React, { Fragment, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
-import BlogContext from '../../context/blog/blogContext';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -40,22 +39,19 @@ const useStyles = makeStyles(theme => ({
 
 const Navbar = () => {
   const authContext = useContext(AuthContext);
-  const blogContext = useContext(BlogContext);
 
   const { isAuthenticated, logout, user } = authContext;
-  const { clearBlogs } = blogContext;
   const classes = useStyles();
 
   const onLogout = () => {
     logout();
-    clearBlogs();
   };
 
   const authLinks = (
     <Fragment>
       <li>Hello {user && user.name}</li>
       <li>
-        <Link onClick={onLogout} href="#!">
+        <Link onClick={onLogout} to="/login">
           <i className="fas fs-sign-out-alt" />
           <span className="hide-sm">Logout</span>
         </Link>
