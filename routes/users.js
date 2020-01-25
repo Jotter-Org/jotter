@@ -52,7 +52,7 @@ router.post(
 
       jwt.sign(
         payload,
-        config.get('jwtSecret'),
+        process.env.JWT_SECRET || config.get('jwtSecret'),
         {
           //for development in prod 3600 i.e. 1hr
           expiresIn: 360000
@@ -60,7 +60,7 @@ router.post(
         (err, token) => {
           if (err) {
             throw err;
-            return ;
+            return;
           }
           res.json({ token });
           return;
