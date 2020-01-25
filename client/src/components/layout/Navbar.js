@@ -7,6 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 // import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import jlogo from '../assets/jotter.ico';
 
 const useStyles = makeStyles(theme => ({
@@ -48,15 +49,14 @@ const Navbar = () => {
   };
 
   const authLinks = (
-    <Fragment>
-      <li>Hello {user && user.name}</li>
-      <li>
+    <nav>
+        Welcome {user && user.name}
+        {"  "}
         <Link onClick={onLogout} to="/login">
-          <i className="fas fs-sign-out-alt" />
-          <span className="hide-sm">Logout</span>
+          Logout
         </Link>
-      </li>
-    </Fragment>
+    </nav>
+    
   );
 
   const guestLinks = (

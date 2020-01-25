@@ -39,7 +39,7 @@ export default function Footer() {
     <div className={classes.root}>
       <CssBaseline />
       <footer className={classes.footer}>
-        <Container maxWidth="sd" text-align="center" justify="space-evenly">
+        <Container text-align="center" justify="space-evenly">
           <Typography variant="body2" color="textSecondary">
             Build on GNU/Linux, circa {new Date().getFullYear()}
             {'.'}
