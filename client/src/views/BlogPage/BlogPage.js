@@ -26,9 +26,9 @@ function BlogPage() {
       } catch (error) {
         if (axios.isCancel(error)) {
           console.log('cancelled');
-        } else {
+        } /*else {
           throw error;
-        }
+        }*/
       }
     };
 
@@ -67,7 +67,7 @@ function BlogPage() {
           <Meta
             avatar={<Avatar src={blog.writer.image} />}
             title={blog.writer.name}
-            description="This is the description"
+            //description="This is the description"
           />
           <div style={{ height: 150, overflowY: 'scroll', marginTop: 10 }}>
             <div dangerouslySetInnerHTML={{ __html: blog.content }} />
