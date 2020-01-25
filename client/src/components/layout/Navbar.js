@@ -49,14 +49,14 @@ const Navbar = () => {
   };
 
   const authLinks = (
-    <nav>
-        Welcome {user && user.name}
+    <Fragment>
+      Welcome  {"   "}
+      <span style={{ color: '#778899'}}>{user && user.name}</span>
         {"  "}
-        <Link onClick={onLogout} to="/login">
-          Logout
-        </Link>
-    </nav>
-    
+      <Link onClick={onLogout} variant="button" color="textPrimary" to="/login"> {" "}
+        Logout
+      </Link>
+    </Fragment>
   );
 
   const guestLinks = (
