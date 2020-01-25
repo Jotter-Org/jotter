@@ -98,7 +98,7 @@ const Login = props => {
                 variant="outlined"
                 margin="normal"
                 required
-                fullWidth
+                
                 id="email"
                 type="email"
                 name="email"
@@ -113,7 +113,7 @@ const Login = props => {
               <input
                 variant="outlined"
                 margin="normal"
-                fullWidth
+             
                 id="password"
                 type="password"
                 name="password"
@@ -126,7 +126,7 @@ const Login = props => {
             <input
               type="submit"
               value="Login"
-              fullWidth
+            
               variant="contained"
               color="primary"
               className="btn btn-block"

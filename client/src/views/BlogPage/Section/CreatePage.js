@@ -51,7 +51,7 @@ function CreatePage(props) {
         message.success('Post Created!');
 
         setTimeout(() => {
-          props.history.push('/blog');
+          props.history.push('/');
         }, 2000);
       }
     });
@@ -73,8 +73,9 @@ function CreatePage(props) {
           <Button
             size="large"
             htmlType="submit"
-            className=""
             onSubmit={onSubmit}
+            text-align="center" 
+            className='btn btn-block'
           >
             Submit
           </Button>
