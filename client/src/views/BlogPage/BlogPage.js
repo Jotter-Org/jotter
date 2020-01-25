@@ -6,8 +6,6 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import {Link} from 'react-router-dom';
 
-
-
 const { Title } = Typography;
 const { Meta } = Card;
 
@@ -65,7 +63,7 @@ function BlogPage() {
         {/* <Col key={index} lg={8} md={12} xs={24}> */}
         <Card
           hoverable
-          style={{ width: 370, marginTop: 16 }}
+          style={{ maxWidth: '700px', margin: '2rem auto' }}
           actions={[
             // <Icon type="setting" key="setting" />,
             // <Icon type="edit" key="edit" />,
@@ -75,17 +73,15 @@ function BlogPage() {
             </a>
             
           ]}
-          
         >
           <div className="padding-blog" style={{ padding: 10}}>
-            Written By: 
-            <Meta
+            Author: <span style={{ color: 'Grey'}}>{blog.writer.name}</span>
+            {/* <Meta
               title={blog.writer.name}
               style={{ color: 'Grey'}}
-
               //description="This is the description"
-            />
-            <div style={{ height: 150,  marginTop: 10 }}>
+            /> */}
+            <div style={{ height: 300 ,maxWidth: '700px', margin: '2rem auto',  overflowY: "auto", marginTop: 10 }}>
               <div dangerouslySetInnerHTML={{ __html: blog.content }} />
             </div>
           </div>
@@ -96,7 +92,7 @@ function BlogPage() {
   });
 
   return (
-    <div style={{ width: '85%', margin: '3rem auto' }}>
+    <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
       <Title level={2}> Blog Lists </Title>
       <br />
       <Row gutter={[32, 16]}>{renderCards}</Row>
