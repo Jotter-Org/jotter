@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const { Blog } = require('../models/Blog');
-
-const { auth } = require('../middleware/auth');
+//const JSON = require('circular-json');
+const auth = require('../middleware/auth');
 const multer = require('multer');
 
 // STORAGE MULTER CONFIG
@@ -37,7 +37,17 @@ router.post('/uploadfiles', (req, res) => {
   });
 });
 
-router.post('/createPost', (req, res) => {
+router.get('/', auth, (req, res) => {
+  /*const blogs = Blog.find({ writer: req.user._id });
+
+  res.json({blogs});*/
+  Blog.find({ writer: req.user.id }).exec((err, blogs) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).json({ success: true, blogs });
+  });
+});
+
+router.post('/createPost', auth, (req, res) => {
   let blog = new Blog({ content: req.body.content, writer: req.body.userID });
 
   blog.save((err, postInfo) => {
@@ -46,7 +56,7 @@ router.post('/createPost', (req, res) => {
   });
 });
 
-router.get('/getBlogs', (req, res) => {
+router.get('/getBlogs', auth, (req, res) => {
   Blog.find()
     .populate('writer')
     .exec((err, blogs) => {
@@ -55,7 +65,7 @@ router.get('/getBlogs', (req, res) => {
     });
 });
 
-router.post('/getPost', (req, res) => {
+router.post('/getPost', auth, (req, res) => {
   //console.log(req.body);
   Blog.findOne({ _id: req.body.postId })
     .populate('writer')

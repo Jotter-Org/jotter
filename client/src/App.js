@@ -10,6 +10,7 @@ import PrivateRoute from './components/routing/PrivateRoute';
 import PostPage from './views/PostPage/PostPage';
 import BlogPage from './views/BlogPage/BlogPage';
 import CreateBlogPage from './views/BlogPage/Section/CreatePage';
+import UserPage from './views/BlogPage/UserPage';
 import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
 import setAuthToken from './utils/setAuthToken';
@@ -34,7 +35,7 @@ const App = () => {
                 <Route exact path="/about" component={About} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
-
+                <PrivateRoute exact path="/user" component={UserPage} />
                 <PrivateRoute
                   exact
                   path="/blog/create"
