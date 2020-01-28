@@ -50,10 +50,14 @@ const Navbar = () => {
 
   const authLinks = (
     <Fragment>
-      Welcome  {"   "}
-      <span style={{ color: '#778899'}}>{user && user.name}</span>
-        {"  "}
-      <Link onClick={onLogout} variant="button" color="textPrimary" to="/login"> {" "}
+      <Link variant="button" color="textPrimary" to="/user">
+        Dashboard
+      </Link>{' '}
+      Welcome {'   '}
+      <span style={{ color: '#778899' }}>{user && user.name}</span>
+      {'  '}
+      <Link onClick={onLogout} variant="button" color="textPrimary" to="/login">
+        {' '}
         Logout
       </Link>
     </Fragment>
