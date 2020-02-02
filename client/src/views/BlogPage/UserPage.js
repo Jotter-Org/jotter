@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
-import { Card, Icon, Typography, Row } from 'antd';
+import { Card,  Typography, Row } from 'antd';
 import AuthContext from '../../context/auth/authContext';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -62,17 +62,27 @@ function UserPage() {
           hoverable
           style={{ maxWidth: '700px', margin: '2rem auto' }}
           actions={[
-            <a href={`/blog/post/${blog._id}`}>
-              {' '}
-              <Icon type="ellipsis" key="ellipsis" />
-            </a>,
-            <button onClick={() => postDelete(blog._id)}>
-              <Icon type="delete" />
-            </button>
+            // <a href={`/blog/post/${blog._id}`}>
+            //   {' '}
+            //   <Icon type="ellipsis" key="ellipsis" />
+            // </a>,
+            <span style={{ display: 'inline' }}>
+              <Link to={`/blog/post/${blog._id}`}>
+                <button className="btn btn-block" text-align="right">
+                  View
+                </button>
+              </Link>
+              
+              <br />
+              <button className="btn btn-block-del" text-align="left" onClick={() => postDelete(blog._id)}>
+                {/* <Icon type="delete" /> */}
+                  Delete
+              </button>
+              <br />
+            </span>
           ]}
         >
           <div className="padding-blog" style={{ padding: 10 }}>
-            Author: <span style={{ color: 'Grey' }}>{blog.writer.name}</span>
             <div
               style={{
                 height: 300,
@@ -92,15 +102,17 @@ function UserPage() {
 
   return (
     <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
-      <Title level={2}> Blog Lists </Title>
-      <br />
-      <Row gutter={[32, 16]}>{renderCards}</Row>
+      <Title level={2}> My Blogs </Title>
       <br />
       <Link to="/blog/create">
-        <button text-align="center" className="btn btn-block">
+        <button text-align="center"  className="btn btn-block">
           Write a New Blog
         </button>
       </Link>
+      <br />
+      <Row gutter={[32, 16]}>{renderCards}</Row>
+      <br />
+      
     </div>
   );
 }

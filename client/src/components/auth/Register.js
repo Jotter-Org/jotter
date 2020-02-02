@@ -95,7 +95,6 @@ const Register = props => {
 								type='text'
 								name='name'
 								varient='outlied'
-								fullWidth
 								autoFocus
 								value={name}
 								onChange={onChange}

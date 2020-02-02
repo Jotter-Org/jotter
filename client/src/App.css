@@ -207,6 +207,12 @@ img {
   width: 100%;
 }
 
+.btn-block-del {
+  display: block;
+  width: 100%;
+  color: red;
+}
+
 .btn-sm {
   font-size: 0.8rem;
   padding: 0.3rem 1rem;

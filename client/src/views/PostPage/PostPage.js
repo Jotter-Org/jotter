@@ -32,10 +32,10 @@ function PostPage(props) {
   if (post.writer) {
     return (
       <div className="postPage" style={{ width: '80%', margin: '3rem auto' }}>
-        <Title level={2}>{post.writer.name}`s Post</Title>
+        <Title level={2}>Author: {post.writer.name}</Title>
         <br />
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Title level={4}>{post.createdAt}</Title>
+          {/* <Title level={4}>{post.createdAt}</Title> */}
         </div>
         <div dangerouslySetInnerHTML={{ __html: post.content }} />
       </div>
