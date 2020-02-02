@@ -75,4 +75,25 @@ router.post('/getPost', auth, (req, res) => {
     });
 });
 
+//route delete /api/blog/:id
+//description delete blog
+//access Private
+
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    let blog = await Blog.findById(req.params.id);
+
+    if (!blog) return res.status(404).json({ msg: 'Blog not found' });
+
+    await Blog.findByIdAndRemove(req.params.id);
+
+    res.json({ msg: 'Blog Removed' });
+    return;
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+    return;
+  }
+});
+
 module.exports = router;

@@ -10,7 +10,7 @@ const { Title } = Typography;
 
 function UserPage() {
   const authContext = useContext(AuthContext);
-  const { user, loadUser } = authContext;
+  const { loadUser } = authContext;
 
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
@@ -43,6 +43,18 @@ function UserPage() {
     //eslint-disable-next-line
   }, []);
 
+  const postDelete = async id => {
+    try {
+      await axios.delete(`/api/blog/${id}`);
+
+      axios.get('/api/blog/').then(response => {
+        setBlogs(response.data.blogs);
+      });
+    } catch (err) {
+      throw err;
+    }
+  };
+
   const renderCards = blogs.map((blog, index) => {
     return (
       <Grid key={index} component={Paper} elevation={2} square>
@@ -53,7 +65,10 @@ function UserPage() {
             <a href={`/blog/post/${blog._id}`}>
               {' '}
               <Icon type="ellipsis" key="ellipsis" />
-            </a>
+            </a>,
+            <button onClick={() => postDelete(blog._id)}>
+              <Icon type="delete" />
+            </button>
           ]}
         >
           <div className="padding-blog" style={{ padding: 10 }}>
