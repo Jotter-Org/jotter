@@ -28,7 +28,7 @@
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.4.1",
-    "config": "^3.2.5",
+    "config": "^3.3.8",
     "express": "^4.17.1",
     "express-validator": "^6.4.0",
     "jsonwebtoken": "^8.5.1",
